@@ -1,0 +1,12 @@
+{
+    "name": "yknsilva/phpeste-gateway-minicli",
+    "description": "Payment gateway adapter with Minicli",
+    "require": {
+        "minicli/minicli": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}

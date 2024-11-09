@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+<?php
+
+if (php_sapi_name() !== 'cli') {
+    exit;
+}
+
+require __DIR__ . '/vendor/autoload.php';
+
+use App\PaymentProcessing;
+use Minicli\App;
+use Minicli\Command\CommandCall;
+
+$app = new App();
+$app->setSignature('./minicli payment');
+
+$app->registerCommand('payment', function (CommandCall $input) {
+    echo "--- STARTING PAYMENT PROCESSING ---";
+    echo PHP_EOL;
+
+    $gateway = $input->getParam('gateway');
+    $operation = $input->getParam('operation');
+
+    echo "GATEWAY: $gateway | OPERATION: $operation";
+    echo PHP_EOL;
+
+    $paymentProcessing = new PaymentProcessing($gateway);
+    $result = match ($operation) {
+        'charge' => $paymentProcessing->charge(),
+        'capture' => $paymentProcessing->capture(),
+        'cancel' => $paymentProcessing->cancel(),
+        'refund' => $paymentProcessing->refund(),
+        default => throw new \InvalidArgumentException("Operation '$operation' not supported")
+    };
+
+    echo PHP_EOL;
+    echo strtoupper("$result->status");
+    echo PHP_EOL;
+    echo strtoupper("$result->message");
+});
+
+$app->runCommand($argv);
