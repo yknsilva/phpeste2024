@@ -19,21 +19,21 @@ class AlwaysFailGateway implements ChargePayment, CapturePayment, CancelPayment,
         ChargeTransactionData $transactionData,
         ChargeCardData $cardData
     ): PaymentOperationResult {
-        return PaymentOperationResult::buildError("[Phractico] Charge: you shall not pass!");
+        return PaymentOperationResult::buildError("Charge: you shall not pass!");
     }
 
     public function capture(CaptureData $captureData): PaymentOperationResult
     {
-        return PaymentOperationResult::buildError("[Phractico] Capture: you shall not pass!");
+        return PaymentOperationResult::buildError("Capture: you shall not pass!");
     }
 
     public function cancel(CancelData $cancelData): PaymentOperationResult
     {
-        return PaymentOperationResult::buildError("[Phractico] Cancel: you shall not pass!");
+        return PaymentOperationResult::buildError("Cancel: you shall not pass!");
     }
 
     public function refund(RefundData $refundData): PaymentOperationResult
     {
-        return PaymentOperationResult::buildError("[Phractico] Refund: you shall not pass!");
+        return PaymentOperationResult::buildError("Refund: you shall not pass!");
     }
 }

@@ -21,7 +21,7 @@ class AwesomeGateway implements ChargePayment, CapturePayment, CancelPayment, Re
     ): PaymentOperationResult {
         $transactionIdentifier = uniqid('awesome_');
         return PaymentOperationResult::buildSuccess(
-            "Awesome Gateway: charge successful",
+            "[Phractico] Awesome Gateway: charge successful",
             $transactionIdentifier
         );
     }
@@ -29,7 +29,7 @@ class AwesomeGateway implements ChargePayment, CapturePayment, CancelPayment, Re
     public function capture(CaptureData $captureData): PaymentOperationResult
     {
         return PaymentOperationResult::buildSuccess(
-            "Awesome Gateway: capture successful",
+            "[Phractico] Awesome Gateway: capture successful",
             $captureData->reference
         );
     }
@@ -37,7 +37,7 @@ class AwesomeGateway implements ChargePayment, CapturePayment, CancelPayment, Re
     public function cancel(CancelData $cancelData): PaymentOperationResult
     {
         return PaymentOperationResult::buildSuccess(
-            "Awesome Gateway: cancel successful",
+            "[Phractico] Awesome Gateway: cancel successful",
             $cancelData->reference
         );
     }
@@ -45,7 +45,7 @@ class AwesomeGateway implements ChargePayment, CapturePayment, CancelPayment, Re
     public function refund(RefundData $refundData): PaymentOperationResult
     {
         return PaymentOperationResult::buildSuccess(
-            "Awesome Gateway: refund successful",
+            "[Phractico] Awesome Gateway: refund successful",
             $refundData->reference
         );
     }

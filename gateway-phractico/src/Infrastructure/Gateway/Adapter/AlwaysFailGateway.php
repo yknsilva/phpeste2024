@@ -13,40 +13,27 @@ use App\Service\PaymentOperationResult;
 use App\Service\Refund\Data\RefundData;
 use App\Service\Refund\RefundPayment;
 
-class AwesomeGateway implements ChargePayment, CapturePayment, CancelPayment, RefundPayment
+class AlwaysFailGateway implements ChargePayment, CapturePayment, CancelPayment, RefundPayment
 {
     public function charge(
         ChargeTransactionData $transactionData,
         ChargeCardData $cardData
     ): PaymentOperationResult {
-        $transactionIdentifier = uniqid('awesome_');
-        return PaymentOperationResult::buildSuccess(
-            "Awesome Gateway: charge successful",
-            $transactionIdentifier
-        );
+        return PaymentOperationResult::buildError("[Phractico] Charge: you shall not pass!");
     }
 
     public function capture(CaptureData $captureData): PaymentOperationResult
     {
-        return PaymentOperationResult::buildSuccess(
-            "Awesome Gateway: capture successful",
-            $captureData->reference
-        );
+        return PaymentOperationResult::buildError("[Phractico] Capture: you shall not pass!");
     }
 
     public function cancel(CancelData $cancelData): PaymentOperationResult
     {
-        return PaymentOperationResult::buildSuccess(
-            "Awesome Gateway: cancel successful",
-            $cancelData->reference
-        );
+        return PaymentOperationResult::buildError("[Phractico] Cancel: you shall not pass!");
     }
 
     public function refund(RefundData $refundData): PaymentOperationResult
     {
-        return PaymentOperationResult::buildSuccess(
-            "Awesome Gateway: refund successful",
-            $refundData->reference
-        );
+        return PaymentOperationResult::buildError("[Phractico] Refund: you shall not pass!");
     }
 }
