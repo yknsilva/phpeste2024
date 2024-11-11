@@ -29,6 +29,8 @@ Both [*phractico*](./gateway-phractico/) and [Laravel](./gateway-laravel/) appli
 
 ```
 cd gateway-phractico
+mkdir database && touch database/database.sqlite
+composer install
 phpctl server 8000 public
 ```
 
@@ -36,6 +38,7 @@ phpctl server 8000 public
 
 ```
 cd gateway-laravel
+composer install
 phpctl server 8000 public
 ```
 
@@ -45,6 +48,7 @@ CLI application uses [minicli](https://github.com/minicli/minicli).
 
 ```
 cd gateway-minicli
+composer install
 chmod +x minicli
 ./minicli payment gateway=<gateway_name> operation=<operation>
 ```
@@ -58,9 +62,14 @@ Start RabbitMQ container:
 stack rabbitmq
 ```
 
-Publishing messages:
+Install dependencies:
 ```
 cd gateway-messaging
+composer install
+```
+
+Publishing messages:
+```
 php publisher.php gateway=<gateway_name> operation=<operation>
 ```
 
