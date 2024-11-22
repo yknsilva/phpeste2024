@@ -40,6 +40,13 @@ function process_message($message)
         default => throw new \InvalidArgumentException("Operation '$operation' not supported")
     };
 
+    echo "GATEWAY: $gateway | OPERATION: $operation";
+    echo PHP_EOL;
+    echo strtoupper("$result->status");
+    echo PHP_EOL;
+    echo strtoupper("$result->message");
+    echo PHP_EOL;
+
     $message->ack();
 
     $paymentResultPublisher = $result->isSuccess()
@@ -47,6 +54,7 @@ function process_message($message)
         : new PaymentFailedPublisher();
 
     echo "Publishing result into '{$paymentResultPublisher->getQueue()}' queue";
+    echo PHP_EOL;
     echo PHP_EOL;
 
     $paymentResultPublisher->publish($result);
